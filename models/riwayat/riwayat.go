@@ -20,9 +20,12 @@ type RiwayatResponse struct {
 	Ktp          string `json:"ktp" gorm:"ktp"`
 	JenisDonor   string `json:"jenis_donor" gorm:"jenis_donor"`
 	JadwalDonor  string `json:"jadwal_donor" gorm:"jadwal_donor"`
+	Status  	 string `json:"status" gorm:"status"`
 }
+
 type RiwayatResponseAll struct {
 	Code    int               `json:"code"`
 	Message string            `json:"message"`
 	Data    []RiwayatResponse `json:"data"`
 }
+
