@@ -16,7 +16,8 @@ type RiwayatCreateRequest struct {
 }
 
 type RiwayatResponse struct {
-	KodePendonor string `json:"kode_pendonor" gorm:"kode_pendonor"`
+	// KodePendonor string `json:"kode_pendonor" gorm:"kode_pendonor"`
+	KuesionerId string `json:"kuesioner_id" gorm:"kuesioner_id"`
 	Ktp          string `json:"ktp" gorm:"ktp"`
 	JenisDonor   string `json:"jenis_donor" gorm:"jenis_donor"`
 	JadwalDonor  string `json:"jadwal_donor" gorm:"jadwal_donor"`
