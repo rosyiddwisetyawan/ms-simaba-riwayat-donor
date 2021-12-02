@@ -10,6 +10,7 @@ import (
 func RiwayatRouter(router *gin.Engine) {
 	router.Use(mdwr.JWTMiddleware())
 	router.POST("api/simaba/riwayat-donor", jdd_handler.RiwayatHandler)
+	router.POST("api/simaba/riwayat-donor/detail", jdd_handler.RiwayatDetailHandler)
 	router.POST("api/simaba/riwayat-donor/add", jdd_handler.CreateRiwayatHandler)
 
 }
