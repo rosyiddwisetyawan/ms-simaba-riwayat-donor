@@ -37,6 +37,26 @@ func GetRiwayat(param rwtmdl.RiwayatRequest) (rwtmdl.RiwayatResponseAll, error) 
 	return res, err
 }
 
+func GetRiwayatDetail(param rwtmdl.RiwayatDetailRequest) (rwtmdl.RiwayatResponseDetailAll, error) {
+	var (
+		result []rwtmdl.RiwayatResponseDetail
+		res    rwtmdl.RiwayatResponseDetailAll
+		err    error
+	)
+	db := database.GetDB().Debug()
+	query := db.Table(table)
+	if param.Ktp != "" {
+		query = query.Where("ktp = ? AND kuesioner_id = ?", param.Ktp, param.KuesionerId)
+	}
+	err = query.Scan(&result).Error
+	if err != nil {
+		fmt.Println(err.Error())
+		return res, err
+	}
+	res.Data = result
+	return res, err
+}
+
 func CreateRiwayat(param rwtmdl.RiwayatCreateRequest) (err error) {
 	db := database.GetDB().Debug()
 	err = db.Exec(fmt.Sprintf(createQuery, table), param.KodePendonor, param.Ktp, param.JenisDonor, param.JadwalDonor).Error

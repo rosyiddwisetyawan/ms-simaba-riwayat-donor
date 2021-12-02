@@ -34,6 +34,27 @@ func RiwayatHandler(c *gin.Context) {
 	}
 }
 
+func RiwayatDetailHandler(c *gin.Context) {
+	var param rwtmdl.RiwayatDetailRequest
+	c.BindJSON(&param)
+
+	if param.Ktp != "" && param.KuesionerId != "" {
+		result, err := rwtctrl.GetRiwayatDetail(param)
+		if err == nil {
+			result.Code = 200
+			result.Message = "success retrieve data"
+			c.JSON(http.StatusOK, result)
+		} else {
+			result.Code = 500
+			result.Message = "internal server error"
+			c.JSON(http.StatusInternalServerError, result)
+		}
+	} else {
+		c.JSON(http.StatusBadRequest, gin.H{"code": 400, "message": "ktp and kuesioner id cannot empty"})
+	}
+
+}
+
 func CreateRiwayatHandler(c *gin.Context) {
 	var param rwtmdl.RiwayatCreateRequest
 	c.BindJSON(&param)
