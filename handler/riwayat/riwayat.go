@@ -27,10 +27,10 @@ func RiwayatHandler(c *gin.Context) {
 		} else {
 			result.Code = 500
 			result.Message = "internal server error"
-			c.JSON(http.StatusInternalServerError, result)
+			c.JSON(http.StatusOK, result)
 		}
 	} else {
-		c.JSON(http.StatusBadRequest, gin.H{"code": 400, "message": fmt.Sprintf("kode %s must be a string", modul)})
+		c.JSON(http.StatusOK, gin.H{"code": 400, "message": fmt.Sprintf("kode %s must be a string", modul)})
 	}
 }
 
@@ -47,10 +47,10 @@ func RiwayatDetailHandler(c *gin.Context) {
 		} else {
 			result.Code = 500
 			result.Message = "internal server error"
-			c.JSON(http.StatusInternalServerError, result)
+			c.JSON(http.StatusOK, result)
 		}
 	} else {
-		c.JSON(http.StatusBadRequest, gin.H{"code": 400, "message": "ktp and kuesioner id cannot empty"})
+		c.JSON(http.StatusOK, gin.H{"code": 400, "message": "ktp and kuesioner id cannot empty"})
 	}
 
 }
@@ -67,9 +67,9 @@ func CreateRiwayatHandler(c *gin.Context) {
 		if err == nil {
 			c.JSON(http.StatusOK, gin.H{"code": 200, "message": "success create data"})
 		} else {
-			c.JSON(http.StatusInternalServerError, gin.H{"code": 500, "message": err.Error()})
+			c.JSON(http.StatusOK, gin.H{"code": 500, "message": err.Error()})
 		}
 	} else {
-		c.JSON(http.StatusBadRequest, gin.H{"code": 400, "message": "this account doesn't have access to create data"})
+		c.JSON(http.StatusOK, gin.H{"code": 400, "message": "this account doesn't have access to create data"})
 	}
 }
