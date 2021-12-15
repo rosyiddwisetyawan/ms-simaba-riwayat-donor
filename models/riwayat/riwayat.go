@@ -17,16 +17,16 @@ type RiwayatCreateRequest struct {
 
 type RiwayatDetailRequest struct {
 	Ktp          string `json:"ktp"`
-	KuesionerId   string `json:"kuesioner_id"`
+	KuesionerId  string `json:"kuesioner_id"`
 	
 }
 
 type RiwayatResponse struct {
 	// KodePendonor string `json:"kode_pendonor" gorm:"kode_pendonor"`
-	KuesionerId string `json:"kuesioner_id" gorm:"kuesioner_id"`
+	KuesionerId  string `json:"kuesioner_id" gorm:"kuesioner_id"`
 	Ktp          string `json:"ktp" gorm:"ktp"`
 	JenisDonor   string `json:"jenis_donor" gorm:"jenis_donor"`
-	JadwalDonor  string `json:"jadwal_donor" gorm:"jadwal_donor"`
+	Created_at   string `json:"created_at" gorm:"created_at"`
 	Status  	 string `json:"status" gorm:"status"`
 }
 
@@ -35,7 +35,8 @@ type RiwayatResponseDetail struct {
 	KuesionerId 		string `json:"kuesioner_id" gorm:"kuesioner_id"`
 	Ktp          		string `json:"ktp" gorm:"ktp"`
 	JenisDonor   		string `json:"jenis_donor" gorm:"jenis_donor"`
-	JadwalDonor  		string `json:"jadwal_donor" gorm:"jadwal_donor"`
+	Created_at    		string `json:"created_at" gorm:"created_at"`
+	Updated_at    		string `json:"updated_at" gorm:"updated_at"`
 	Status  	 		string `json:"status" gorm:"status"`
 	Nama  	 			string `json:"nama" gorm:"nama"`
 	JenisKelamin  	 	string `json:"jenis_kelamin" gorm:"jenis_kelamin"`
