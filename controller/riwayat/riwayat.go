@@ -20,13 +20,8 @@ func GetRiwayat(param rwtmdl.RiwayatRequest) (rwtmdl.RiwayatResponseAll, error) 
 	)
 	db := database.GetDB().Debug()
 	query := db.Table(table)
-	// if param.KodePendonor != "" {
-	// 	query = query.Where("kode_pendonor = ?", param.KodePendonor)
-	// 	// query = query.Select("riwayat_donor.kode_pendonor, riwayat_donor.ktp, riwayat_donor.jenis_donor, riwayat_donor.jadwal_donor, calon_pendonor.status").Joins("inner join calon_pendonor on riwayat_donor.ktp = calon_pendonor.ktp").Where("kode_pendonor = ?",  param.KodePendonor)
-	// }
 	if param.Ktp != "" {
-		query = query.Where("ktp = ?", param.Ktp)
-		// query = query.Select("riwayat_donor.kode_pendonor, riwayat_donor.ktp, riwayat_donor.jenis_donor, riwayat_donor.jadwal_donor, calon_pendonor.status").Joins("inner join calon_pendonor on riwayat_donor.ktp = calon_pendonor.ktp").Where("ktp = ?", param.Ktp)
+		query = query.Where("ktp = ? ORDER BY created_at DESC", param.Ktp)
 	}
 	err = query.Scan(&result).Error
 	if err != nil {
@@ -34,6 +29,8 @@ func GetRiwayat(param rwtmdl.RiwayatRequest) (rwtmdl.RiwayatResponseAll, error) 
 		return res, err
 	}
 	res.Data = result
+	fmt.Println(result)
+	fmt.Println(res)
 	return res, err
 }
 
