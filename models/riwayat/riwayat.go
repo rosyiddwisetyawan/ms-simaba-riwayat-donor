@@ -28,9 +28,11 @@ type RiwayatResponse struct {
 	JenisDonor   string `json:"jenis_donor" gorm:"jenis_donor"`
 	Created_at   string `json:"created_at" gorm:"created_at"`
 	Status  	 string `json:"status" gorm:"status"`
+	TGL  	 	 string `json:"TGL" gorm:"TGL"`
 }
 
 type RiwayatResponseDetail struct {
+	TGL  	 	 		string `json:"TGL" gorm:"TGL"`
 	KodeCalonPendonor 	string `json:"kode_calon_pendonor" gorm:"kode_calon_pendonor"`
 	KuesionerId 		string `json:"kuesioner_id" gorm:"kuesioner_id"`
 	Ktp          		string `json:"ktp" gorm:"ktp"`
@@ -55,6 +57,7 @@ type RiwayatResponseDetail struct {
 	TanggalSembuh  	 	string `json:"tanggal_sembuh" gorm:"tanggal_sembuh"`
 	StatusBerkas  	 	string `json:"status_berkas" gorm:"status_berkas"`
 	BeratBadan  	 	string `json:"berat_badan" gorm:"berat_badan"`
+	
 }
 
 type RiwayatResponseAll struct {
