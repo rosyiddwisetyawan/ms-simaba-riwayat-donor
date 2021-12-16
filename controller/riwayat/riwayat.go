@@ -21,8 +21,10 @@ func GetRiwayat(param rwtmdl.RiwayatRequest) (rwtmdl.RiwayatResponseAll, error) 
 	db := database.GetDB().Debug()
 	query := db.Table(table)
 	if param.Ktp != "" {
-		query = query.Where("ktp = ? ORDER BY created_at DESC", param.Ktp)
+		query = query.Select("KUESIONER_IC.TGL, calon_pendonor.* ").Joins("left join KUESIONER_IC on KUESIONER_IC.TRANSAKSI = calon_pendonor.kuesioner_id").Where("calon_pendonor.ktp = ? ORDER BY created_at DESC", param.Ktp)
 	}
+
+	fmt.Println(query)
 	err = query.Scan(&result).Error
 	if err != nil {
 		fmt.Println(err.Error())
@@ -43,7 +45,7 @@ func GetRiwayatDetail(param rwtmdl.RiwayatDetailRequest) (rwtmdl.RiwayatResponse
 	db := database.GetDB().Debug()
 	query := db.Table(table)
 	if param.Ktp != "" {
-		query = query.Where("ktp = ? AND kuesioner_id = ?", param.Ktp, param.KuesionerId)
+		query = query.Select("KUESIONER_IC.TGL, calon_pendonor.* ").Joins("left join KUESIONER_IC on KUESIONER_IC.TRANSAKSI = calon_pendonor.kuesioner_id").Where("calon_pendonor.ktp = ? AND calon_pendonor.kuesioner_id = ?", param.Ktp, param.KuesionerId)
 	}
 	err = query.Scan(&result).Error
 	if err != nil {
