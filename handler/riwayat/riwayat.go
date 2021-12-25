@@ -73,3 +73,7 @@ func CreateRiwayatHandler(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"code": 400, "message": "this account doesn't have access to create data"})
 	}
 }
+
+func GetMain(c *gin.Context) {
+	c.String(http.StatusOK, "Welcome")
+}
