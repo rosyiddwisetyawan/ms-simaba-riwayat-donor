@@ -3,7 +3,7 @@ FROM golang:1.14.3
 COPY . /app
 WORKDIR /app
 
-ENV DB_HOST=sahabat-utd.id
+ENV DB_HOST=101.50.2.91
 ENV DB_NAME=sahabat_utd
 ENV DB_USER=kic-utd
 ENV DB_PASS=P@ssw0rdKIC!!
