@@ -13,5 +13,6 @@ func RiwayatRouter(router *gin.Engine) {
 	router.POST("simaba", jdd_handler.RiwayatHandler)
 	router.POST("simaba/detail", jdd_handler.RiwayatDetailHandler)
 	router.POST("simaba/add", jdd_handler.CreateRiwayatHandler)
+	router.POST("simaba/complete-donor", jdd_handler.RiwayatCompleteHandler)
 
 }

@@ -55,6 +55,27 @@ func RiwayatDetailHandler(c *gin.Context) {
 
 }
 
+func RiwayatCompleteHandler(c *gin.Context) {
+	var param rwtmdl.RiwayatCompleteRequest
+	c.BindJSON(&param)
+
+	if param.Ktp != "" {
+		result, err := rwtctrl.GetRiwayatComplete(param)
+		if err == nil {
+			result.Code = 200
+			result.Message = "success retrieve data"
+			c.JSON(http.StatusOK, result)
+		} else {
+			result.Code = 500
+			result.Message = "internal server error"
+			c.JSON(http.StatusOK, result)
+		}
+	} else {
+		c.JSON(http.StatusOK, gin.H{"code": 400, "message": "ktp cannot empty"})
+	}
+
+}
+
 func CreateRiwayatHandler(c *gin.Context) {
 	var param rwtmdl.RiwayatCreateRequest
 	c.BindJSON(&param)

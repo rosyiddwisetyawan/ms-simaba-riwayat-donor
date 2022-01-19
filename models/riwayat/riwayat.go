@@ -5,6 +5,7 @@ type RiwayatRequest struct {
 	Ktp          string `json:"ktp"`
 	JenisDonor   string `json:"jenis_donor"`
 	JadwalDonor  string `json:"jadwal_donor"`
+	Status  	 string `json:"status"`
 }
 
 type RiwayatCreateRequest struct {
@@ -19,6 +20,17 @@ type RiwayatDetailRequest struct {
 	Ktp          string `json:"ktp"`
 	KuesionerId  string `json:"kuesioner_id"`
 	
+}
+
+type RiwayatCompleteRequest struct {
+	Ktp          string `json:"ktp"`
+}
+
+type RiwayatCompleteResponse struct {
+	KodePendonor string `json:"kode_pendonor" gorm:"kode_pendonor"`
+	Ktp          string `json:"ktp" gorm:"ktp"`
+	JenisDonor   string `json:"jenis_donor" gorm:"jenis_donor"`
+	JadwalDonor  string `json:"jadwal_donor" gorm:"jadwal_donor"`
 }
 
 type RiwayatResponse struct {
@@ -70,5 +82,11 @@ type RiwayatResponseDetailAll struct {
 	Code    int               `json:"code"`
 	Message string            `json:"message"`
 	Data    []RiwayatResponseDetail `json:"data"`
+}
+
+type RiwayatCompleteAll struct {
+	Code    int               `json:"code"`
+	Message string            `json:"message"`
+	Data    []RiwayatCompleteResponse `json:"data"`
 }
 
