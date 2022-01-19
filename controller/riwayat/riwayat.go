@@ -21,7 +21,7 @@ func GetRiwayat(param rwtmdl.RiwayatRequest) (rwtmdl.RiwayatResponseAll, error) 
 	db := database.GetDB().Debug()
 	query := db.Table(table)
 	if param.Ktp != "" {
-		query = query.Select("KUESIONER_IC.TGL, calon_pendonor.* ").Joins("left join KUESIONER_IC on KUESIONER_IC.TRANSAKSI = calon_pendonor.kuesioner_id").Where("calon_pendonor.ktp = ? and status = ? ORDER BY created_at DESC", param.Ktp, param.Status)
+		query = query.Select("KUESIONER_IC.TGL, calon_pendonor.* ").Joins("left join KUESIONER_IC on KUESIONER_IC.TRANSAKSI = calon_pendonor.kuesioner_id").Where("calon_pendonor.ktp = ? and status in('lolos admin', 'location_set', 'location_sample_set', 'lolos_sampe', 'pengambilan_darah') ORDER BY created_at DESC", param.Ktp)
 	}
 
 	fmt.Println(query)

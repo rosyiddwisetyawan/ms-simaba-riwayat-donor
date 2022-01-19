@@ -5,7 +5,7 @@ type RiwayatRequest struct {
 	Ktp          string `json:"ktp"`
 	JenisDonor   string `json:"jenis_donor"`
 	JadwalDonor  string `json:"jadwal_donor"`
-	Status  	 string `json:"status"`
+	
 }
 
 type RiwayatCreateRequest struct {
